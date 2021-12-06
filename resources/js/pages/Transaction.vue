@@ -151,6 +151,8 @@
       FetchTransaction () {
         this.axios.get(`transactions/show/${this.transaction_id}`).then((response) => {
           this.transaction = response.data
+        }).catch(() => {
+          this.$router.push('/unauthorised')
         })
       },
       doPayment() {
