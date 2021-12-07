@@ -12,6 +12,7 @@ const routes = [
   { path: '/admin/accounts', component: require('../pages/admin/Accounts.vue').default, meta: { admin_only: true } },
   { path: '/admin/logs', component: require('../pages/admin/Logs.vue').default, meta: { admin_only: true } },
   { path: '/admin/reports', component: require('../pages/admin/Reports.vue').default, meta: { admin_only: true } },
+  { path: '/admin/reports/show/:id', component: require('../pages/admin/report/single.vue').default, meta: { admin_only: true } },
   { path: '/transactions/show/:id', component: require('../pages/Transaction.vue').default, meta: { requiresAuth: true } },
   { path: '/admin/transactions', component: require('../pages/admin/Transactions.vue').default, meta: { admin_only: true } }
 ]
