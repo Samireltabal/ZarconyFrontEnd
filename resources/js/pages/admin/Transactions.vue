@@ -25,7 +25,7 @@
           <input
             type="email"
             v-model="email"
-            placeholder="User Email"
+            placeholder="User Email Or Wallet Id"
             class="form-control"
           ></datepicker>
         </div>
@@ -37,13 +37,13 @@
     <div class="card-body">
                         <ztable v-if="transactions.data" :headers="tableHeaders" :tabledata="transactions.data">
                             <template #state="slotProps">
-                                {{ slotProps.itemProp.state.state_name }}
+                                {{ slotProps.itemProp.state_name }}
                             </template>
                             <template #reciever="slotProps">
-                                {{ slotProps.itemProp.reciever.user.name }}
+                                {{ slotProps.itemProp.recieverName }}
                             </template>
                             <template #sender="slotProps">
-                                {{ slotProps.itemProp.sender.user.name }}
+                                {{ slotProps.itemProp.SenderName }}
                             </template>
                             <template #isRecharge="slotProps">
                                 {{ slotProps.itemProp.is_recharge ? 'yes'  : 'no' }}
@@ -52,10 +52,7 @@
                                 {{ slotProps.itemProp.amount }} TL
                             </template>
                             <template #created_at="slotProps">
-                                {{ $luxon(slotProps.itemProp.created_at) }}
-                            </template>
-                            <template #direction="slotProps">
-                                slotProps.itemProp.reciever_identifier
+                                {{ slotProps.itemProp.created_at }}
                             </template>
                             <template #options="slotProps">
                                 <router-link :to="`/transactions/show/${slotProps.itemProp.transaction_identifier}`">
@@ -156,6 +153,7 @@
         const uri = '/transactions/admin/list' +  '?page=' + this.current_page + '&per_page=' + this.per_page + '&date_from=' + (this.parsed_from ? this.parsed_from : null) + '&date_to=' + (this.parsed_to ? this.parsed_to : null) + '&user=' + (this.email ? this.email : null )
                 this.axios.get(uri).then((res) => {
                     this.transactions = res.data
+                  console.log(res.data)
                 })
       },
       customFormatter(date) {
